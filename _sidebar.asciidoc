@@ -15,6 +15,7 @@
 ** link:guide-consuming-rest-services[Consuming REST services]
 ** link:guide-package-managers[Package Managers]
 ** link:guide-routing[Routing]
+** link:guide-app-initializer[App Initializer]
 ** link:guide-testing[Testing]
 
 === Cookbook
