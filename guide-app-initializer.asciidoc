@@ -395,6 +395,6 @@ Finally, for this demonstration app, we are just going to show version of the co
 
 Now we are going to use the script command `start` that we created earlier in the `package.json` with npm. The command is going to look like this `npm start`. After that, if we modify the boolean `loadExternalConfig` inside `/app/config/config.ts` the application should show 'Here is the configuration version that is using angular right now: "config.version"'.
 
-image::images/loadExternalConfigFalse.png[, link="images/loadExternalConfigFalse.png"]
+image::images/app-initializer/loadExternalConfigFalse.png[, link="images/loadExternalConfigFalse.png"]
 
-image::images/loadExternalConfigTrue.png[, link="images/loadExternalConfigTrue.png"]
+image::images/app-initializer/loadExternalConfigTrue.png[, link="images/loadExternalConfigTrue.png"]
