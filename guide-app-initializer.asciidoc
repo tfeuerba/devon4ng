@@ -258,7 +258,7 @@ This step is going to setup two proxies. This is going to allow to load the conf
 
 == Creating core configuration service
 
-In order to create the whole configuration module it is going to need to create three things:
+In order to create the whole configuration module three are going to be created:
 
 1.- Create in the core `app/core/config/` a `config.ts`
 
