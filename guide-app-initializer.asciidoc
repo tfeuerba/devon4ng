@@ -11,7 +11,7 @@ APP_INITIALIZER allows us to provide a service in the initialization of the appl
 The provider expects the return of a `Promise`, if we are using Observables, we need to use the `toPromise()` method that allow us to switch from `Observable` to `Promise`
 ====
 
-[typescript, source]
+[source, TypeScript]
 ----
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -35,7 +35,7 @@ export class ConfigModule {}
 
 This is going to allow us to create a `ConfigService` where, using a singleton, we are going to load an external config depending on a route. This dependence with a route, allows us to setup diferent configuration for docker etc. We are going to see this working in the `ConfigService` of MyThaiStar:
 
-[typescript, source]
+[source, TypeScript]
 ----
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -80,7 +80,7 @@ export class ConfigService {
 
 As we mentioned already, you can see the use of a factory to create a singleton at the start. After that, `loadExternalConfig` is going to look for a boolean inside a config file called `config`, this boolean `loadExternalConfig` is going to easily allow us to switch to a external config. If its true, it generates a promise that overwrites the parameters of the local config, allowing us to load the external config. Finally, the last method `getValues()` is going to allow us to return the file config with the values (overwritten or not). We can see the `config` file  from MyThaiStar here:
 
-[typescript, source]
+[source, TypeScript]
 ----
 export enum BackendType {
   IN_MEMORY,
@@ -253,7 +253,7 @@ In order to create the whole configuration module we are going to need to create
 
 1.- Create in the core `app/core/config/` a `config.ts`
 
-[typescript, source]
+[source, TypeScript]
 ----
   export interface Config {
     version: string;
@@ -271,7 +271,7 @@ If we take a look to this file, we created a interfaces (`Config`) that are goin
 
 2.- Create in the core `app/core/config/` a `config.service.ts`:
 
-[typescript, source]
+[source, TypeScript]
 ----
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -319,7 +319,7 @@ After that, we see, the `loadExternalConfig()` method checks if the boolean in t
 
 3.- Create in the core a module for the config `app/core/config/` a `config.module.ts`:
 
-[typescript, source]
+[source, TypeScript]
 ----
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -347,7 +347,7 @@ As we mentioned earlier, we can see the `ConfigService` added to the module. In 
 
 As a first step, we are going to import to the `/app/app.module.ts` the `ConfigModule` we created in the other step:
 
-[typescript, source]
+[source, TypeScript]
 ----
 
   imports: [
@@ -359,7 +359,7 @@ As a first step, we are going to import to the `/app/app.module.ts` the `ConfigM
 
 After that, we are going to inject the `ConfigService` into the `app.component.ts`
 
-[typescript, source]
+[source, TypeScript]
 ----
 ....
 import { ConfigService } from './core/config/config.service';
