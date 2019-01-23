@@ -1,3 +1,10 @@
+:toc: macro
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
 == Global Error Handler in angular
 
 Angular allows us to set up a custom error handler that can be used to control the different errors and them in a correct way. Using a global error handler will avoid mistakes and provide a use friendly interface allowing us to indicate the user what problem is happening.
@@ -14,7 +21,7 @@ In order to create a custom `ErrorHandler` three steps are going to be needed:
 
 In this first step the custom `ErrorHandler` class is going to be created inside the folder `/app/core/errors/errors-handler.ts`:
 
-[typescript, source]
+[source, TypeScript]
 ----
 import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -53,7 +60,7 @@ This class can be used to control the different type of errors. If wanted, the `
 
 Inside the same folder created in the last step we are going to create the `ErrorInterceptor`(`errors-handler-interceptor.ts`). This `ErrorInterceptor` is going to retry any failed calls to the server to make sure its not being found before showing the error:
 
-[typescript, source]
+[source, TypeScript]
 ----
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -78,7 +85,7 @@ This custom made interceptor is implementing the `HttpInterceptor` and inside th
 
 Finally, creating a module(`errors-handler.module.ts`) is necessary to include the `interceptor` and the custom error handler. In this case, the module is going to be created in the same folder as the last two: 
 
-[typescript, source]
+[source, TypeScript]
 ----
 import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -108,7 +115,7 @@ export class ErrorsHandlerModule { }
 
 This module simply is providing the services that are implemented by our custom classes and then telling angular to use our custom made classes instead of the default ones. After doing this, the module has to be included in the app module `app.module.ts` in order to be used.
 
-[typescript, source]
+[source, TypeScript]
 ----
 ....
   imports: [
