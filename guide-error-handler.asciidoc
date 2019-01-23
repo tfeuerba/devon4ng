@@ -11,7 +11,7 @@ Angular allows us to set up a custom error handler that can be used to control t
 
 == What is ErrorHandler
 
-`ErrorHandler` is the class that `Angular` uses by default to control the errors. This means that, even if the application doesnt have a `ErrorHandler` its going to use the one setup by default in `Angular`. This can be tested by trying to find a page not existing in any app, instantly `Angular` will print the error in the console.
+`ErrorHandler` is the class that `Angular` uses by default to control the errors. This means that, even if the application doesnt have a `ErrorHandler` it is going to use the one setup by default in `Angular`. This can be tested by trying to find a page not existing in any app, instantly `Angular` will print the error in the console.
 
 == Creating your custom ErrorHandler step by step
 
@@ -58,7 +58,7 @@ This class can be used to control the different type of errors. If wanted, the `
 
 === Creating a ErrorInterceptor
 
-Inside the same folder created in the last step we are going to create the `ErrorInterceptor`(`errors-handler-interceptor.ts`). This `ErrorInterceptor` is going to retry any failed calls to the server to make sure its not being found before showing the error:
+Inside the same folder created in the last step we are going to create the `ErrorInterceptor`(`errors-handler-interceptor.ts`). This `ErrorInterceptor` is going to retry any failed calls to the server to make sure it is not being found before showing the error:
 
 [source, TypeScript]
 ----
@@ -79,7 +79,7 @@ export class ErrorsHandlerInterceptor implements HttpInterceptor {
 }
 ----
 
-This custom made interceptor is implementing the `HttpInterceptor` and inside the method `intercept` using the method `pipe` and `retry` from `RxJs` its going to retry five times before firing an error to the `ErrorsHandler`.
+This custom made interceptor is implementing the `HttpInterceptor` and inside the method `intercept` using the method `pipe` and `retry` from `RxJs` it is going to retry five times before firing an error to the `ErrorsHandler`.
 
 === Creating a Error Module
 
