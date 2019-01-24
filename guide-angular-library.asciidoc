@@ -38,21 +38,21 @@ In this step we are going to pack the build library and install/add it on other 
 
 In order to use the library in other applications, there are two steps needed:
 
-    1.- From inside the library dist folder, the library is going to get packed using `npm pack`. This is going to generate a `.tgz` file with the library name and the version.
+    1. From inside the library dist folder, the library is going to get packed using `npm pack`. This is going to generate a `.tgz` file with the library name and the version.
 
-    2 (optional).- At this point  the generated `.tgz` can be published, this step is not going to be explained in this guide. In this case, in the next step you would install the publicated version instead of the `.tgz`.
+    2. (optional).- At this point  the generated `.tgz` can be published, this step is not going to be explained in this guide. In this case, in the next step you would install the publicated version instead of the `.tgz`.
 
-    3.- From inside the application where the library is going to get used, using the command `npm install "route-to-tgz"/"library-name-version.tgz"` allows us to install the `.tgz` that got generated in the first step.
+    3. From inside the application where the library is going to get used, using the command `npm install "route-to-tgz"/"library-name-version.tgz"` allows us to install the `.tgz` that got generated in the first step.
 
 ==== yarn
 
 In order to use the library in other applications, there are two steps needed:
 
-    1.- From inside the library dist folder, the library is going to get packed using `yarn pack`. This is going to generate a `.tgz` file with the library name and the version.
+    1. From inside the library dist folder, the library is going to get packed using `yarn pack`. This is going to generate a `.tgz` file with the library name and the version.
 
-    2 (optional).- At this point  the generated `.tgz` can be published, this step is not going to be explained in this guide. In this case, in the next step you would install the publicated version instead of the `.tgz`.
+    2. (optional).- At this point  the generated `.tgz` can be published, this step is not going to be explained in this guide. In this case, in the next step you would install the publicated version instead of the `.tgz`.
 
-    3.- From inside the application where the library is going to get used, using the command `npm install "route-to-tgz"/"library-name-version.tgz"` allows us to install the `.tgz` that got generated in the first step.
+    3. From inside the application where the library is going to get used, using the command `npm install "route-to-tgz"/"library-name-version.tgz"` allows us to install the `.tgz` that got generated in the first step.
 
 === Using the library
 
