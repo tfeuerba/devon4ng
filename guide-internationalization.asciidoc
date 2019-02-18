@@ -178,8 +178,9 @@ The `TranslateParser` understands nested JSON objects. This means that you can h
 
 In order to access access the value, use the dot notation, in this case `HOME.HELLO`.
 
-=== Service translation 
+=== Using the service, pipe or directive
 
+==== Service
 If you need to access translations in any component or service you can do it injecting the `Translateservice` into them:
 
 [source,typescript]
@@ -190,6 +191,36 @@ translate.get('HELLO', {value: 'world'}).subscribe((res: string) => {
 });
 ----
 
-IMPORTANT: You can find a complete example at https://github.com/oasp/devon4ng-application-template. 
+==== Pipe
+The use of pipes can be possible too:
+
+template:
+[source, typescript]
+----
+<div>{{ 'HELLO' | translate:param }}</div>
+----
+
+component:
+[source, typescript]
+----
+param = {value: 'world'};
+----
+
+==== Directives
+Finally, it can also be used with directives:
+
+[source, typescript]
+----
+<div [translate]="'HELLO'" [translateParams]="{value: 'world'}"></div>
+----
+
+or, using the content of your element as a key
+
+[source, typescript]
+----
+<div translate [translateParams]="{value: 'world'}">HELLO</div>
+----
+
+IMPORTANT: You can find a complete example at https://github.com/devonfw/devon4ng-application-template. 
 
 Please, visit https://github.com/ngx-translate/core for more info.

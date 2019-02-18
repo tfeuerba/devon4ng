@@ -14,11 +14,15 @@
 ** link:guide-internationalization[Internationalization]
 ** link:guide-consuming-rest-services[Consuming REST services]
 ** link:guide-package-managers[Package Managers]
+** link:guide-npm-yarn-workflow[Package Managers Workflow]
 ** link:guide-routing[Routing]
 ** link:guide-app-initializer[App Initializer]
 ** link:guide-error-handler[Error Handler]
 ** link:guide-angular-library[Angular Library]
 ** link:guide-testing[Testing]
+** link:guide-update-angular-cli[Update Angular CLI]
+
 
 === Cookbook
 ** link:cookbook-abstract-class-store[Abstract Class Store]
+** link:guide-add-electron[Angular Electron]
