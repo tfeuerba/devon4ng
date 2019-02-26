@@ -283,15 +283,15 @@ This allows javascript to hook with the `@Output()` event emitter that was defin
 
 == Angular Element within another Angular project
 
-In order to use an `Angular Element` within another `Angular` project we need to do the following steps:
+In order to use an `Angular Element` within another `Angular` project the following steps need to be followed:
 
 === Copy bundled script and css to resources
 
-First we need to copy the generated `.js` and `.css` inside assets in the corresponding folder.
+First copy the generated `.js` and `.css` inside assets in the corresponding folder.
 
 === Add bundled script to angular.json
 
-Inside `angular.json` both of the files that we copied in the last step are going to be included. This will be done both, in `test` and in `build`. Including it on the test, will allow to perform unitary tests.
+Inside `angular.json` both of the files that were copied in the last step are going to be included. This will be done both, in `test` and in `build`. Including it on the test, will allow to perform unitary tests.
 
 [source, json]
 ----
@@ -370,7 +370,7 @@ export class AppComponent implements OnInit {
 
 ===== Using it directly
 
-In order to use it directly on the templates, in the `app.module.ts` we need to add `CUSTOM_ELEMENTS_SCHEMA`:
+In order to use it directly on the templates, in the `app.module.ts` the `CUSTOM_ELEMENTS_SCHEMA` needs to be added:
 
 [source, typescript]
 ----
