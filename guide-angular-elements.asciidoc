@@ -206,6 +206,76 @@ ng build "projectName" --prod --output-hashing=none && cat dist/"projectName"/ru
 
 After executing the bash script, it will generate inside the path `dist/"projectName"` a js file named `"nameWantedAngularElement".js` and a css file.
 
+===== Building with ngx-build-plus (Recommended)
+
+The library https://github.com/manfredsteyer/ngx-build-plus[ngx-build-plus] allows to add different options when building. In addition, it solves some errors that will occur when trying to use multiple angular elements in an application. In order to use it, yarn or npm can be used:
+
+Yarn
+[source]
+----
+yarn add ngx-build-plus
+----
+
+Npm
+[source]
+----
+npm install ngx-build-plus
+----
+
+If you want to add it to a specific sub project in your projects folder, use the --project: 
+
+[source]
+----
+.... ngx-build-plus --project "project-name"
+----
+
+Using this library and the following command, an isolated `Angular Element` which won't have conflict with others can be generated. This `Angular Element` will not have a polyfill so, the project where we use them will need to include a `poliyfill` with the `Angular Element` requirements.
+
+[source]
+----
+ng build "projectName" --output-hashing none --single-bundle true --prod --bundle-styles false
+----
+
+This command will generate three things:
+
+  1. The main js bundle
+  2. The script js
+  3. The css
+
+These files will be used later instead of the single js generated in the last step. 
+
+====== Extra parameters
+
+Here are some extra useful parameters that `ngx-build-plus` provides:
+
+  - `--keep-polyfills`: This paremeter is going to allow us to keep the polyfills. This needs to be used with caution, avoiding using multiple different polyfills that could cause an error is necessary.
+  - `--extraWebpackConfig webpack.extra.js`: This parameter allows us to create a javascript file inside our `Angular Elements` project with the name of different libraries. Using `webpack` these libraries will not be included in the `Angular Element`. This is useful to lower the size of our `Angular Element` by removing libraries shared. Example:
+
+[source, javascript]
+----
+const webpack = require('webpack');
+
+module.exports = {
+    "externals": {
+        "rxjs": "rxjs",
+        "@angular/core": "ng.core",
+        "@angular/common": "ng.common",
+        "@angular/common/http": "ng.common.http",
+        "@angular/platform-browser": "ng.platformBrowser",
+        "@angular/platform-browser-dynamic": "ng.platformBrowserDynamic",
+        "@angular/compiler": "ng.compiler",
+        "@angular/elements": "ng.elements",
+        "@angular/router": "ng.router",
+        "@angular/forms": "ng.forms"
+    }
+}
+----
+
+[NOTE]
+====
+  If some libraries are excluded from the `Angular Element` you will need to add the bundled umd files of those libraries manually.
+====
+
 === Using the Angular Element
 
 The `Angular Element` that got generated in the last step can be used in almost every framework. In this case, the `Angular Element` is going to be used in html:
