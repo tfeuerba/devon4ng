@@ -73,13 +73,26 @@ export class ErrorsHandlerInterceptor implements HttpInterceptor {
     constructor() {}
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).pipe(
-            retry(5)
+            retryWhen((errors: Observable<any>) => errors.pipe(
+                delay(500),
+                take(5),
+                concatMap((error: any, retryIndex: number) => {
+                    if (++retryIndex === 5) {
+                        throw error;
+                    }
+                    return of(error);
+                })
+            ))
         );
     }
 }
 ----
 
-This custom made interceptor is implementing the `HttpInterceptor` and inside the method `intercept` using the method `pipe` and `retry` from `RxJs` it is going to retry five times before firing an error to the `ErrorsHandler`.
+This custom made interceptor is implementing the `HttpInterceptor` and inside the method `intercept` using the method `pipe`,`retryWhen`,`delay`,`take` and `concatMap` from https://rxjs-dev.firebaseapp.com/api[RxJs] it is going to do the next things if there is errors:
+
+  1. With `delay(500)` do a delay to allow some time in between requests 
+  2. With `take(5)` retry five times.
+  3. With `concatMap` if the index that `take()` gives is not 5 it returns the error, else, it throws the error.
 
 === Creating a Error Module
 
@@ -130,3 +143,39 @@ As a final step, handling these errors is necessary. Theres different ways that 
     - Creating a custom page and using with `Router` to redirect to a page showing an error.
     - Creating a service in the server side or `Backend` to create a log with the error and calling it with `HttpClient`.
     - Showing a custom made `SnackBar` with the error message.
+
+==== Using `SnackBarService` and `NgZone` 
+
+If the https://material.angular.io/components/snack-bar/overview[SnackBar] is used directly, some errors can ocurr, this is due to `SnackBar` being out of the `Angular` zone. In order to use this service properly, https://angular.io/api/core/NgZone[NgZone] is necessary. The method `run()` from `NgZone` will allow the service to be inside the `Angular Zone`. An example on how to use it: 
+
+[source, TypeScript]
+----
+import { ErrorHandler, Injectable, Injector, NgZone } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material';
+
+@Injectable()
+export class ErrorsHandler implements ErrorHandler {
+
+    constructor(private injector: Injector, private zone: NgZone) {}
+
+    handleError(error: Error | HttpErrorResponse) {
+      // Use injector to get the necessary services to redirect or
+      const snackBar: MatSnackBar = this.injector.get(MatSnackBar);
+      const classname  = error.constructor.name;
+      let message: string;
+      switch ( classname )  {
+        case 'HttpErrorResponse':
+          message = !(navigator.onLine) ? 'There is no internet connection' : error.message;
+          break;
+        default:
+          message = error.message;
+      }
+      this.zone.run(
+        () => snackBar.open(message, 'danger', { duration : 4000})
+      );
+    }
+}
+----
+
+Using `Injector` the `MatSnackBar` is obtained, then the correct message is obtained inside the switch. Finally, using `NgZone` and `run()`, we open the `SnackBar` passing the message, and the paremeters wanted.
