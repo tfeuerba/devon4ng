@@ -23,6 +23,8 @@
 ** link:guide-update-angular-cli[Update Angular CLI]
 ** link:guide-angular-elements[Angular Elements]
 
+=== Ionic
+** link:guide-ionic-getting-started[Ionic 4 Getting started]
 
 === Cookbook
 ** link:cookbook-abstract-class-store[Abstract Class Store]
