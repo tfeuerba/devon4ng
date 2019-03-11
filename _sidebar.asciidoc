@@ -21,8 +21,10 @@
 ** link:guide-angular-library[Angular Library]
 ** link:guide-testing[Testing]
 ** link:guide-update-angular-cli[Update Angular CLI]
-** link:guide-ionic-getting-started[Ionic 4 Getting started]
+** link:guide-angular-elements[Angular Elements]
 
+=== Ionic
+** link:guide-ionic-getting-started[Ionic 4 Getting started]
 
 === Cookbook
 ** link:cookbook-abstract-class-store[Abstract Class Store]
