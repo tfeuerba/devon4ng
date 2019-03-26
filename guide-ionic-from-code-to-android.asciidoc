@@ -1,0 +1,61 @@
+=  Ionic: From code to android
+:toc:
+
+= Introduction
+
+This page is written to help developers to go from the source code of an ionic application to an android one, with this in mind, topics such as: environment, commands, modifications,...  are covered.
+
+= Assumptions
+
+This document assumes that the reader has already:
+
+** Source code of an ionic 4 application and wants to build it on an android device, 
+** A working installation of Node.js
+** An Ionic CLI installed and up-to-date.
+** Android Studio and Android SDK.
+
+
+= From ionic 4 to android project
+
+When a native application is being dessigned, sometimes, functionalities that uses camera, geolocation, push notification, ... are requested. To resolve these requests, Capacitor can be used.
+
+In general terms, Capacitor wraps apps made with Ionic (HTML, SCSS, Typescript) into WebViews that can be displayed in native applications (Android, IOS) and allows the developer to access native functionalities like the ones said before.
+
+Installing capacitor is as easy as installing any node module, just a few commands have to be run in a console:
+
+** `cd name-of-ionic-4-app`
+** `npm install --save @capacitor/core @capacitor/cli`
+
+Then, it is necessary to initialize capacitor with some information: app id, name of the app and the directory where your app is stored. To fill this information, run:
+
+** `npx cap init`
+
+== Modifications
+
+Throughout the development process, usually back-end and front-end are on a local computer, so it's a common practice to have diferent configuration files for each environment (commonly production and development). Ionic 4 uses an angular.json file to store those configurations and some rules to be applied.
+
+If a back-end is hosted on http://localhost:8081, and that direction is used in every environment, the application built for android will not work because computer and device do not have the same localhost. Fortunately, different configurations can be defined.
+
+Android Studio uses 10.0.0.2 as alias for 127.0.0.1 (computer's localhost) so adding http//10.0.0.2:8081 in a new environment file and modifying angular.json accordingly, will make possible connect front-end and back-end.
+
+image::images/ionic-to-android/environments.png["Android environment and angular.json", link="images/ionic-to-android/environments.png"]
+
+    "build": {
+    ...
+        "configurations": {
+            ...
+            "android": {
+                "fileReplacements": [
+                    {
+                        "replace": "src/environments/environment.ts",
+                        "with": "src/environments/environment.android.ts"
+                    }
+                ]
+            },
+        }
+    }
+
+
+** `ionic build --configuration=android`
+** `npx cap copy`
+** `npx cap open android`
