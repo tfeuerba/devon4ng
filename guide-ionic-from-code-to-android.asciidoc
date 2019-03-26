@@ -55,7 +55,14 @@ image::images/ionic-to-android/environments.png["Android environment and angular
         }
     }
 
+== Build
+
+Once configured, it is necessary to build the Ionic 4 app using this new configuration:
 
 ** `ionic build --configuration=android`
+
+The next commands copy the build application on a www folder and opens android studio.
+
 ** `npx cap copy`
 ** `npx cap open android`
+
