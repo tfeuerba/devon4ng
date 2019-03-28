@@ -72,14 +72,14 @@ The next commands copy the build application on a folder named android and open 
 
 Once Android Studio is opened, follow these steps:
 
-1. Click on Build -> Make project.
-2. Click on build -> Make Module 'app' (default name).
+1. Click on "Build" -> Make project.
+2. Click on "Build" -> Make Module 'app' (default name).
 
 image:images/ionic-to-android/and-vsc-make.png[Click on make project,width="400" link="images/ionic-to-android/and-vsc-make.png"]
 image:images/ionic-to-android/and-vsc-make-app.png[click on make app,width="400" link="images/ionic-to-android/and-vsc-make-app.png"]
 
 [start=3]
-3. Click on Build -> Build Bundle(s) / APK(s) -> Build APK(s).
+3. Click on" Build" -> Build Bundle(s) / APK(s) -> Build APK(s).
 4. Click on run and choose a device.
 
 image:images/ionic-to-android/and-vsc-build-apk.png[click on build APK,width="400" link="images/ionic-to-android/and-vsc-build-apk.png"]
@@ -90,22 +90,23 @@ If there are no devices available, a new one can be created:
 1. Click on "Create new device"
 2. Select hardware and click "Next". For example: Phone -> Nexus 5X.
 
-image:images/ionic-to-android/create-new-device.png["",width="400" link="images/ionic-to-android/create-new-device.png"]
-image:images/ionic-to-android/new-phone-nexus.png["",width="400" link="images/ionic-to-android/new-phone-nexus.png"]
+image:images/ionic-to-android/create-new-device.png["Create new device",width="400" link="images/ionic-to-android/create-new-device.png"]
+image:images/ionic-to-android/new-phone-nexus.png["Select hardware",width="400" link="images/ionic-to-android/new-phone-nexus.png"]
 
 [start=3]
 3. Download a system image.
 a. Click on download.
 b. Wait until the installation finished and then click "Finish".
-c. Click Next
+c. Click "Next".
 
-4. Verify configuration (default configuration should be enough). Click "Next".
+4. Verify configuration (default configuration should be enough) and click "Next".
 
-image:images/ionic-to-android/download-so.png["",width="400" link="images/ionic-to-android/download-so.png"]
-image:images/ionic-to-android/config-device.png["",width="400" link="images/ionic-to-android/config-device.png"]
+image:images/ionic-to-android/download-so.png["Download system image",width="400" link="images/ionic-to-android/download-so.png"]
+image:images/ionic-to-android/config-device.png["Check configuration",width="400" link="images/ionic-to-android/config-device.png"]
 
 [start=5]
 5. Check that the new device is created correctly.
 
-image::images/ionic-to-android/new-phone-created.png["",width="400" link="images/ionic-to-android/new-phone-created.png"]
+image::images/ionic-to-android/new-phone-created.png["New created device",width="400" link="images/ionic-to-android/new-phone-created.png"]
 
+= From Android project to real device
