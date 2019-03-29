@@ -119,7 +119,7 @@ image::images/ionic-to-android/ipconfig-short.png["Result of ipconfig command on
 
 This obtained IP must be used instead of "localhost" or "10.0.2.2" at environment.android.ts.
 
-image::images/ionic-to-android/new-backend-url.png["Result of ipconfig command on Windows 10",width="700" link="images/ionic-to-android/new-backend-url.png"]
+image::images/ionic-to-android/new-backend-url.PNG["Android environment file server URL" ,width="700" link="images/ionic-to-android/new-backend-url.PNG"]
 
 After this configuration, follow the build steps in "From ionic 4 to Android project" and the first three steps in "From Android project to emulated device".
 
@@ -150,6 +150,6 @@ image::images/ionic-to-android/locate-apk.png["Steps to enable developer options
 
 = Result
 
-If everything goes correctly, the Ionic 4 application will be ready to test.
+If everything goes correctly, the Ionic 4 application will be ready to be tested.
 
 image::images/ionic-to-android/real-device.png["Application running on a real device" ,width="300" link="images/ionic-to-android/real-device.png"]
