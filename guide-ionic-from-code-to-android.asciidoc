@@ -144,7 +144,12 @@ After this, do the step four in "From Android project to emulated device" and ch
 
 == Send APK to Android throught email
 
+When you build an APK, a dialog gives two options: locate or analyze. If the first one is chosen, Windows file explorer will be opened showing an APK that can be send using email. Download the APK on your phone and click it to install.
 
+image::images/ionic-to-android/locate-apk.png["Steps to enable developer options: 4, 5, 6" ,width="300" link="images/ionic-to-android/locate-apk.png"]
 
-== Result
-image::images/ionic-to-android/real-device.png["Steps to enable developer options: 4, 5, 6" ,width="300" link="images/ionic-to-android/real-device.png"]
+= Result
+
+If everything goes correctly, the Ionic 4 application will be ready to test.
+
+image::images/ionic-to-android/real-device.png["Application running on a real device" ,width="300" link="images/ionic-to-android/real-device.png"]
