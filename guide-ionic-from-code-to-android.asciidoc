@@ -110,3 +110,41 @@ image:images/ionic-to-android/config-device.png["Check configuration",width="400
 image::images/ionic-to-android/new-phone-created.png["New created device",width="400" link="images/ionic-to-android/new-phone-created.png"]
 
 = From Android project to real device
+
+To test on a real android device, an easy aproach to comunicate a smartphone (front-end) and computer (back-end) is to configure a Wi-fi hotspot and connect the computer to it. A guide about this process can be found at https://support.google.com/nexus/answer/9059108?hl=en
+
+Once connected, run `ipconfig` on a console if you are using windows or `ifconfig` on a linux machine to get the IP address of your machine's Wireless LAN adapter Wi-fi.
+
+image::images/ionic-to-android/ipconfig-short.png["Result of ipconfig command on Windows 10" ,width="700"link="images/ionic-to-android/ipconfig-short.png"]
+
+This obtained IP must be used instead of "localhost" or "10.0.2.2" at environment.android.ts.
+
+image::images/ionic-to-android/new-backend-url.png["Result of ipconfig command on Windows 10",width="700" link="images/ionic-to-android/new-backend-url.png"]
+
+After this configuration, follow the build steps in "From ionic 4 to Android project" and the first three steps in "From Android project to emulated device".
+
+== Send APK to Android through USB
+
+To send the built application to a device, you can connect computer and mobile through USB, but first, it is necessary to unlock developer options.
+
+1. Open "Settings" and go to "System".
+2. Click on "About".
+3. Click "Build number" seven times to unlock developer options.
+
+image::images/ionic-to-android/enable-developer-options1_2_3.png["Steps to enable developer options: 1, 2, 3" ,width="700" link="images/ionic-to-android/enable-developer-options1_2_3.png"]
+
+[start=4]
+4. Go to "System" again an then to "Developer options"
+5. Check that the options are "On".
+6. Check that "USB debugging" is activated.
+
+image::images/ionic-to-android/enable-developer-options4_5_6.png["Steps to enable developer options: 4, 5, 6" ,width="700" link="images/ionic-to-android/enable-developer-options4_5_6.png"]
+
+After this, do the step four in "From Android project to emulated device" and choose the connected smartphone.
+
+== Send APK to Android throught email
+
+
+
+== Result
+image::images/ionic-to-android/real-device.png["Steps to enable developer options: 4, 5, 6" ,width="300" link="images/ionic-to-android/real-device.png"]
