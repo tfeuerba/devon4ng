@@ -22,12 +22,11 @@
 ** link:guide-testing[Testing]
 ** link:guide-update-angular-cli[Update Angular CLI]
 ** link:guide-angular-elements[Angular Elements]
-** link:guide-ionic-getting-started[Ionic 4 Getting started]
-** link:guide-ionic-from-code-to-android[Ionic 4 to Android]
 
 
 === Ionic
 ** link:guide-ionic-getting-started[Ionic 4 Getting started]
+** link:guide-ionic-from-code-to-android[Ionic 4 to Android]
 
 === Cookbook
 ** link:cookbook-abstract-class-store[Abstract Class Store]
