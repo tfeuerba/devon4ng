@@ -163,6 +163,8 @@ _start_url_: URL loaded when the user launches the web application.
 
 _icons_: Array of icons that serve as representations of the web app.
 
+Additional information can be found https://developers.google.com/web/fundamentals/web-app-manifest/[here].
+
 {nbsp} +
 {nbsp} +
 
@@ -198,11 +200,13 @@ nsgw-config.json specifies which files and data URLs have to be cached and updat
 **** _strategy_: Caching strategies (performance or freshness).
 ** _navigationUrls_: List of URLs that will be redirected to the index file.
 
+Additional information can be found https://angular.io/guide/service-worker-config[here].
+
 === Step 6: Configure the app
 
 *manifest.json*
 
-Default configuration
+Default configuration.
 
 {nbsp} +
 {nbsp} +
