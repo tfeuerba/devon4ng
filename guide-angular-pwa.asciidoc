@@ -38,51 +38,47 @@ Web applications usually uses external resources, making necessary the addition 
 
 To retrieve data with this service, you have to import the module HttpClient and add it to the service's contructor. Once added, use it to create a function *getDishes()* that sends http request to My Thai Start's back-end. The URL of the back-end can be stored as an environment variable *MY_THAI_STAR_DISH* 
 
+*data.service.ts*
 
-*data.service.ts* 
-
+[source,ts]
   ...
   import { HttpClient } from '@angular/common/http';
   import { MY_THAI_STAR_DISH } from '../environments/environment';
-
   ...
   export class DataService {
     constructor(private http: HttpClient) {}
-
     /* Get data from Back-end */
     getDishes() {
       return this.http.get(MY_THAI_STAR_DISH);
     }
-
     ...
   }
 
 *environments.ts*
-  
+
+[source,ts]
   ...
   export const MY_THAI_STAR_DISH =
   'http://de-mucdevondepl01:8090/api/services/rest/dishmanagement/v1/dish/1';
-
   ...
 
 *environments.prod.ts*
 
+[source,ts]
   ...
   export const MY_THAI_STAR_DISH =
   'http://de-mucdevondepl01:8090/api/services/rest/dishmanagement/v1/dish/1';
-
   ...
 
 === Step 3: Use the service
 
 The component AppComponent implements the interface OnInit and inside its method ngOnInit() the suscription to the services is done. When a dish arrives, it is saved and shown (app.component.html).
 
+[source,ts]
   ...
   import { DataService } from './data.service';
-
   export class AppComponent implements OnInit {
   dish: { name: string; description: string } = { name: '', description: ''};
-
   ...
   ngOnInit() {
     this.data
@@ -103,12 +99,14 @@ This step shows code interesting in the sample app. The complete content can be 
 
 *index.html*
 
+[source,html]
 To use the Montserrat font add the following link inside the tag header.
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
 *styles.scss* 
 
+[source,css]
   body {
     ...
     font-family: 'Montserrat', sans-serif;
@@ -119,20 +117,19 @@ To use the Montserrat font add the following link inside the tag header.
 This file is also used to reload the app if there are any changes.
 
 * _SwUpdate_: This object comes inside the @angular/pwa package and it is used to detect changes and reload the page if needed.
-  
+
+[source,ts]
   ...
   import { SwUpdate } from '@angular/service-worker';
-
   export class AppComponent implements OnInit {
   ...
-
-  constructor(updates: SwUpdate, private data: DataService) {
-    updates.available.subscribe((event) => {
-      updates.activateUpdate().then(() => document.location.reload());
-    });
+    constructor(updates: SwUpdate, private data: DataService) {
+      updates.available.subscribe((event) => {
+        updates.activateUpdate().then(() => document.location.reload());
+      });
+    }
+    ...
   }
-  ...
-}
 
 === Step 5: Make it Progressive.
 
@@ -214,12 +211,14 @@ Default configuration.
 
 At _assetGroups -> resources -> urls_: In this field the google fonts api is added in order to use Montserrat font even without network.
 
+[source,json]
   "urls": [
           "https://fonts.googleapis.com/**"
         ]
 
 At the root of the json: A data group to cache API calls.
 
+[source,json]
   {
   ...
   "dataGroups": [{
