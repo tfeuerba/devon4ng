@@ -22,7 +22,7 @@ image::images/ionic/ionic-pwa/base.png["Ionic 4 PWA Base", width=250 link="image
 
 To explain how to build progressive web apps (PWA) using Ionic 4, a basic application is going to be built. This app will be able to take photos even without network using PWA elements.
 
-== Step 1: Create a new project
+=== Step 1: Create a new project
 
 This step can be completed with one simple command: `ionic start <name> <template>`, where <name> is the name and <template> a model for the app. In this case, the app is going to be named *basic-ion-pwa*.
 
@@ -78,10 +78,9 @@ The process of taking a picture is enclosed in a *takePicture* method. takePictu
 
 === Step 4: PWA Elements
 
-To use Capacitor's PWA elements font add the following script inside the tag header at *index.html*.
+When Ionic apps are not running natively, some resources like Camera do not work by default but can be enabled using PWA Elements. To use Capacitor's PWA elements add the following script inside the tag header at *index.html*.
 
   <script src='https://unpkg.com/@ionic/pwa-elements@1.0.2/dist/ionicpwaelements.js'></script>
-
 
 === Step 5: Make it Progressive.
 
@@ -95,7 +94,7 @@ Default configuration.
 
 *ngsw-config.json*
 
-At *assetGroups -> resources* add a urls field and a pattern to match PWA Elements scripts and other resources (images, styles, ...):
+At _assetGroups -> resources_ add a urls field and a pattern to match PWA Elements scripts and other resources (images, styles, ...):
 
   "urls": ["https://unpkg.com/@ionic/pwa-elements@1.0.2/dist/**"]
 
@@ -111,7 +110,7 @@ Go to the *www* folder running `cd www`.
 
 `http-server -o` to serve your built app.
 
-image::images/ionic/ionic-pwa/http-server.png["My thai star recommendation", width=600 link="images/ionic/ionic-pwa/http-server.png"]
+image::images/ionic/ionic-pwa/http-server.png["Http server running", width=600 link="images/ionic/ionic-pwa/http-server.png"]
 
 In another console instance:
 
@@ -119,3 +118,14 @@ run `ionic serve` to open the common app.
 
 image::images/ionic/ionic-pwa/ionic-serve.png["Ionic serve on Visual Studio Code console", width=600 link="images/ionic/ionic-pwa/ionic-serve.png"]
 
+The first difference can be found on _Developer tools -> application_, here it is seen that the PWA application (left) has a service worker and the common one does not.
+
+image::images/ionic/ionic-pwa/pwa-nopwa-app.png["Application comparison", width=800 link="images/ionic/ionic-pwa/pwa-nopwa-app.png"]
+
+If the "offline" box is checked, it will force a disconnection from network. In situations where users do not have connectivity or have a slow, one the PWA can still be accesed and used. 
+
+image::images/ionic/ionic-pwa/online-offline.png["Online offline apps", width=800 link="images/ionic/ionic-pwa/online-offline.png"]
+
+Finally, plugins like https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk[Lighthouse] can be used to test whether an application is progressive or not.
+
+image::images/ionic/ionic-pwa/lighthouse.png["Lighthouse report", width=800 link="images/ionic/ionic-pwa/lighthouse.png"]
