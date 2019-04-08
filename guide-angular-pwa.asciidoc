@@ -3,6 +3,12 @@
 
 = Introduction
 
+Progresive web applications (PWAs) are web application that offer better user experience than the traditional ones. In general, they solve problems related with reliability and speed:
+
+* _Reliability_:  PWAs are stable. In this context stability means than even with slow connections or even with no network at all, the application still works. To achieve this, some basic resources like styles, fonts, requests, ... are stored; due to this caching, it is not possible to assure that the content is always up-to-date.
+* _Speed_: When an users opens an application, he or she will expect it to load almost inmediately (almost 53% of users abandon sites that take longer that 3 seconds, source: https://developers.google.com/web/progressive-web-apps/#fast).
+
+PWAs uses a script called https://developers.google.com/web/fundamentals/primers/service-workers/[service worker], which runs in background and essentially act as proxy between web app and network, intercepting requests and acting depending on the network conditions.
 
 = Assumptions
 
@@ -16,7 +22,7 @@ This guide assumes that you already have installed:
 
 image::images/angular/angular-pwa/mts-pwa-rec.png["My thai star recommendation", width=800 link="images/angular/angular-pwa/mts-pwa-rec.png"]
 
-To explain how to build progressive web apps (PWA) using angular, a basic application is going to be built. This app will be able to ask for resources and save in the cache in order to work even offline.
+To explain how to build PWAs using angular, a basic application is going to be built. This app will be able to ask for resources and save in the cache in order to work even offline.
 
 == Step 1: Create a new project
 
@@ -101,27 +107,12 @@ To use the Montserrat font add the following link inside the tag header.
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
-*styles.css* 
+*styles.scss* 
 
   body {
     ...
     font-family: 'Montserrat', sans-serif;
   }
-
-*app.component.scss*
-
-  .app-main {
-    ...
-
-    background-image: url('http://de-mucdevondepl01:8090/background-dish.fe9678cd8802fa639336.png'),
-      url('http://de-mucdevondepl01:8090/star.5cbbb1d4fad2e640a5bb.png'),
-      url('http://de-mucdevondepl01:8090/Wood2.7b3782e7fd543cc9cdc4.jpg');
-    
-    ...
-  }
-  ...
-
-This class applies color to the application and organize its content. Notice that *background-image* uses three images that are not stored inside this project.
 
 *app.component.ts*
 
@@ -147,6 +138,9 @@ This file is also used to reload the app if there are any changes.
 
 Turining an angular app into a PWA is pretty easy, just one module has to be added, to do so, run: `ng add @angular/pwa`. This command also adds two important files, explained below.
 
+{nbsp} +
+{nbsp} +
+
 * manifest.json
 
 manifest.json is a file that allows to control how the app is displayed in places where native apps are displayed.
@@ -168,6 +162,9 @@ _scope_: Navigation scope of tghis web application's application context.
 _start_url_: URL loaded when the user launches the web application.
 
 _icons_: Array of icons that serve as representations of the web app.
+
+{nbsp} +
+{nbsp} +
 
 * ngsw-config.json
 
@@ -207,26 +204,15 @@ nsgw-config.json specifies which files and data URLs have to be cached and updat
 
 Default configuration
 
+{nbsp} +
+{nbsp} +
 *ngsw-config.json*
 
-At assetGroups -> resources -> urls: In this field the google fonts api is added in order to use Montserrat font even without network.
+At _assetGroups -> resources -> urls_: In this field the google fonts api is added in order to use Montserrat font even without network.
 
   "urls": [
           "https://fonts.googleapis.com/**"
         ]
-
-At assetGroups: New asset group to cache pictures used in app.component.scss.
-
-  {
-      "name": "pictures",
-      "resources": {
-        "urls": [
-          "http://de-mucdevondepl01:8090/background-dish.fe9678cd8802fa639336.png",
-          "http://de-mucdevondepl01:8090/star.5cbbb1d4fad2e640a5bb.png",
-          "http://de-mucdevondepl01:8090/Wood2.7b3782e7fd543cc9cdc4.jpg"
-        ]
-      }
-  }
 
 At the root of the json: A data group to cache API calls.
 
@@ -256,12 +242,32 @@ To check if an app is a PWA lets compare its normal behaviour against the same a
 
 Go to the dist/basic-ng-pwa/ folder running `cd dist/basic-ng-pwa`.
 
-`http-serve -o -c-1` to serve your built app.
+`http-serve -o` to serve your built app.
 
 image::images/angular/angular-pwa/http-serve.png["My thai star recommendation", width=600 link="images/angular/angular-pwa/http-serve.png"]
+
+{nbsp}
 
 In another console instance:
 
 run `ng serve` to open the common app.
 
 image::images/angular/angular-pwa/ng-serve.png["My thai star recommendation", width=600 link="images/angular/angular-pwa/ng-serve.png"]
+
+{nbsp} 
+
+The first difference can be found on _Developer tools -> application_, here it is seen that the PWA application (left) has a service worker and the common (right) one does not.
+
+image::images/angular/angular-pwa/pwa-nopwa-app-ng.png["Application comparison", width=800 link="images/angular/angular-pwa/pwa-nopwa-app-ng.png"]
+
+{nbsp}
+
+If the "offline" box is checked, it will force a disconnection from network. In situations where users do not have connectivity or have a slow, one the PWA can still be accesed and used. 
+
+image::images/angular/angular-pwa/online-offline-ng.png["Online offline apps", width=800 link="images/angular/angular-pwa/online-offline-ng.png"]
+
+{nbsp}
+
+Finally, browser extensions like https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk[Lighthouse] can be used to test whether an application is progressive or not.
+
+image::images/angular/angular-pwa/lighthouse-ng.png["Lighthouse report", width=800 link="images/angular/angular-pwa/lighthouse-ng.png"]
