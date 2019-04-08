@@ -41,18 +41,22 @@ To retrieve data with this service, you have to import the module HttpClient and
 *data.service.ts*
 
 [source,ts]
+----
   ...
   import { HttpClient } from '@angular/common/http';
   import { MY_THAI_STAR_DISH } from '../environments/environment';
   ...
+
   export class DataService {
     constructor(private http: HttpClient) {}
+
     /* Get data from Back-end */
     getDishes() {
       return this.http.get(MY_THAI_STAR_DISH);
     }
     ...
   }
+----
 
 *environments.ts*
 
@@ -75,10 +79,12 @@ To retrieve data with this service, you have to import the module HttpClient and
 The component AppComponent implements the interface OnInit and inside its method ngOnInit() the suscription to the services is done. When a dish arrives, it is saved and shown (app.component.html).
 
 [source,ts]
+----
   ...
   import { DataService } from './data.service';
   export class AppComponent implements OnInit {
   dish: { name: string; description: string } = { name: '', description: ''};
+
   ...
   ngOnInit() {
     this.data
@@ -93,6 +99,7 @@ The component AppComponent implements the interface OnInit and inside its method
       );
   }
 }
+----
 
 === Step 4: Structures, styles and updates
 This step shows code interesting in the sample app. The complete content can be found in "add-repository-here".
@@ -119,9 +126,12 @@ This file is also used to reload the app if there are any changes.
 * _SwUpdate_: This object comes inside the @angular/pwa package and it is used to detect changes and reload the page if needed.
 
 [source,ts]
+----
   ...
   import { SwUpdate } from '@angular/service-worker';
+
   export class AppComponent implements OnInit {
+
   ...
     constructor(updates: SwUpdate, private data: DataService) {
       updates.available.subscribe((event) => {
@@ -130,6 +140,7 @@ This file is also used to reload the app if there are any changes.
     }
     ...
   }
+----
 
 === Step 5: Make it Progressive.
 

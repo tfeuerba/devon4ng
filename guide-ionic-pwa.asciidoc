@@ -43,16 +43,18 @@ First we have to import three important elements:
 
 * Plugins: Capacitor constant value used to access to the device's camera and toast dialogs.
 
+[source,ts]
   import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   import { Plugins, CameraResultType } from '@capacitor/core';
   const { Camera, Toast } = Plugins;
 
 The process of taking a picture is enclosed in a *takePicture* method. takePicture calls the Camera's _getPhoto_ function which returs an URL or an exception. If a photo is taken then the image displayed in the main page will be changed for the new picture, else, if the app is closed without changing it, a toast message will be displayed.
 
+[source,ts]
+----
   export class HomePage {
     image: SafeResourceUrl;
-
-  ...
+    ...
 
     async takePicture() {
       try {
@@ -77,11 +79,13 @@ The process of taking a picture is enclosed in a *takePicture* method. takePictu
       });
     }
   }
+----
 
 === Step 4: PWA Elements
 
 When Ionic apps are not running natively, some resources like Camera do not work by default but can be enabled using PWA Elements. To use Capacitor's PWA elements add the following script inside the tag header at *index.html*.
 
+[source,html]
   <script src='https://unpkg.com/@ionic/pwa-elements@1.0.2/dist/ionicpwaelements.js'></script>
 
 === Step 5: Make it Progressive.
@@ -98,6 +102,7 @@ Default configuration.
 
 At _assetGroups -> resources_ add a urls field and a pattern to match PWA Elements scripts and other resources (images, styles, ...):
 
+[source,json]
   "urls": ["https://unpkg.com/@ionic/pwa-elements@1.0.2/dist/**"]
 
 === Step 7: Check that your app is a PWA
