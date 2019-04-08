@@ -99,7 +99,7 @@ The component AppComponent implements the interface OnInit and inside its method
 }
 
 === Step 4: Structures, styles and updates
-This step shows code interesting in the sample app. The complete content can be found in the repository.
+This step shows code interesting in the sample app. The complete content can be found in "add-repository-here".
 
 *index.html*
 
