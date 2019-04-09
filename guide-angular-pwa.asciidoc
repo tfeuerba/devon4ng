@@ -106,9 +106,9 @@ This step shows code interesting in the sample app. The complete content can be 
 
 *index.html*
 
-[source,html]
 To use the Montserrat font add the following link inside the tag header.
 
+[source,html]
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
 *styles.scss* 
@@ -222,29 +222,30 @@ Default configuration.
 
 At _assetGroups -> resources -> urls_: In this field the google fonts api is added in order to use Montserrat font even without network.
 
-[source,json]
+[source]
   "urls": [
           "https://fonts.googleapis.com/**"
         ]
 
+
 At the root of the json: A data group to cache API calls.
 
-[source,json]
+[source]
   {
-  ...
-  "dataGroups": [{
-    "name": "mythaistar-dishes",
-    "urls": [
-      "http://de-mucdevondepl01:8090/api/services/rest/dishmanagement/v1/dish/1"
-    ],
-    "cacheConfig": {
-      "maxSize": 100,
-      "maxAge": "1h",
-      "timeout": "10s",
-      "strategy": "freshness"
-    }
-  }]
-}
+    ...
+    "dataGroups": [{
+      "name": "mythaistar-dishes",
+      "urls": [
+        "http://de-mucdevondepl01:8090/api/services/rest/dishmanagement/v1/dish/1"
+      ],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "1h",
+        "timeout": "10s",
+        "strategy": "freshness"
+      }
+    }]
+  }
 
 === Step 7: Check that your app is a PWA
 

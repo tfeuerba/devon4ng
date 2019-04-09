@@ -102,7 +102,7 @@ Default configuration.
 
 At _assetGroups -> resources_ add a urls field and a pattern to match PWA Elements scripts and other resources (images, styles, ...):
 
-[source,json]
+[source]
   "urls": ["https://unpkg.com/@ionic/pwa-elements@1.0.2/dist/**"]
 
 === Step 7: Check that your app is a PWA
