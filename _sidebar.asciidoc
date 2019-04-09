@@ -6,6 +6,10 @@
 ** link:components-layer[Components Layer]
 ** link:services-layer[Services Layer]
 
+== Layouts
+** link:guide-layout-with-angular-material[Angular Material Layout]
+
+
 === Guides
 ** link:guide-component-decomposition[Component Decomposition]
 ** link:guide-accessibility[Accessibility]
