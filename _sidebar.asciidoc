@@ -6,27 +6,35 @@
 ** link:components-layer[Components Layer]
 ** link:services-layer[Services Layer]
 
+== Layouts
+** link:guide-layout-with-angular-material[Angular Material Layout]
+
+
 === Guides
-** link:guide-file-structure[File Structure]
 ** link:guide-component-decomposition[Component Decomposition]
-** link:guide-working-with-angular-cli[Working with Angular CLI]
 ** link:guide-accessibility[Accessibility]
 ** link:guide-internationalization[Internationalization]
 ** link:guide-consuming-rest-services[Consuming REST services]
 ** link:guide-package-managers[Package Managers]
 ** link:guide-npm-yarn-workflow[Package Managers Workflow]
-** link:guide-routing[Routing]
 ** link:guide-app-initializer[App Initializer]
-** link:guide-error-handler[Error Handler]
-** link:guide-angular-library[Angular Library]
 ** link:guide-testing[Testing]
+
+=== Angular 
+** link:guide-working-with-angular-cli[Working with Angular CLI]
 ** link:guide-update-angular-cli[Update Angular CLI]
+** link:guide-file-structure[File Structure]
+** link:guide-routing[Routing]
+** link:guide-error-handler[Error Handler]
+** link:guide-angular-pwa[Angular Progressive Web Apps]
+** link:guide-angular-library[Angular Library]
 ** link:guide-angular-elements[Angular Elements]
 
 
 === Ionic
 ** link:guide-ionic-getting-started[Ionic 4 Getting started]
 ** link:guide-ionic-from-code-to-android[Ionic 4 to Android]
+** link:guide-angular-pwa[Ionic Progressive Web Apps]
 
 === Cookbook
 ** link:cookbook-abstract-class-store[Abstract Class Store]
