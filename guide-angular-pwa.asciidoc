@@ -28,7 +28,7 @@ To explain how to build PWAs using angular, a basic application is going to be b
 
 This step can be completed with one simple command: `ng new <name>`, where <names> is the name for the app. In this case, the app is going to be named *basic-ng-pwa*.
 
-=== Step 2: Create a service
+== Step 2: Create a service
 
 Web applications usually uses external resources, making necessary the addition of services which can get those resources. This application gets a dish from My Thai Star's back-end and shows it. To do so, a new service is going to be created.
 
@@ -74,7 +74,7 @@ To retrieve data with this service, you have to import the module HttpClient and
   'http://de-mucdevondepl01:8090/api/services/rest/dishmanagement/v1/dish/1';
   ...
 
-=== Step 3: Use the service
+== Step 3: Use the service
 
 The component AppComponent implements the interface OnInit and inside its method ngOnInit() the suscription to the services is done. When a dish arrives, it is saved and shown (app.component.html).
 
@@ -101,7 +101,7 @@ The component AppComponent implements the interface OnInit and inside its method
 }
 ----
 
-=== Step 4: Structures, styles and updates
+== Step 4: Structures, styles and updates
 This step shows code interesting in the sample app. The complete content can be found in "add-repository-here".
 
 *index.html*
@@ -142,7 +142,7 @@ This file is also used to reload the app if there are any changes.
   }
 ----
 
-=== Step 5: Make it Progressive.
+== Step 5: Make it Progressive.
 
 Turining an angular app into a PWA is pretty easy, just one module has to be added, to do so, run: `ng add @angular/pwa`. This command also adds two important files, explained below.
 
@@ -210,7 +210,7 @@ nsgw-config.json specifies which files and data URLs have to be cached and updat
 
 Additional information can be found https://angular.io/guide/service-worker-config[here].
 
-=== Step 6: Configure the app
+== Step 6: Configure the app
 
 *manifest.json*
 
@@ -247,7 +247,7 @@ At the root of the json: A data group to cache API calls.
     }]
   }
 
-=== Step 7: Check that your app is a PWA
+== Step 7: Check that your app is a PWA
 
 To check if an app is a PWA lets compare its normal behaviour against the same app but built for production. Run in the project's root folder the commands below:
 
