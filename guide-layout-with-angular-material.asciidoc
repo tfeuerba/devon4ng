@@ -11,7 +11,7 @@ image::images/layout-angular-material/1-finished-application.png["Finished appli
 
 = Let's begin
 
-We start with opening the console(running console.bat in the Devon distribution folder) and running the follwing command to start a project named devon4ng-mat-layout
+We start with opening the console(running console.bat in the Devon distribution folder) and running the following command to start a project named devon4ng-mat-layout
 
 ** `ng new devon4ng-mat-layout`
 
