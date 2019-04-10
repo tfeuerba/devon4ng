@@ -1,7 +1,21 @@
-=  Ionic Progressive Web App
-:toc:
+:toc: macro
 
-= Introduction
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+= Ionic Progressive Web App
 
 This guide is a continuation of the guide link:./guide-angular-pwa.asciidoc[Angular PWAs], therefore, valid concepts explained there are still valid in this page but focused on Ionic.
 

@@ -1,7 +1,20 @@
 :toc: macro
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
 toc::[]
 :idprefix:
 :idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
 = Components Layer
 
 The components layer encapsulates all components presenting the current application view state, which means data to be shown to the user.
