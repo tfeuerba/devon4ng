@@ -1,7 +1,20 @@
 :toc: macro
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
 toc::[]
 :idprefix:
 :idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
 = Component Decomposition
 
 When implementing a new requirement there are a few design decisions, which need to be considered.

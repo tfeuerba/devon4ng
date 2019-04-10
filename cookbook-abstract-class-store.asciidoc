@@ -1,7 +1,20 @@
 :toc: macro
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
 toc::[]
 :idprefix:
 :idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
 = Abstract Class Store
 
 The following solution presents a base class for implementing stores which handle state and its transitions.

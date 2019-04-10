@@ -1,7 +1,21 @@
-=  Ionic: From code to android
-:toc:
+:toc: macro
 
-= Introduction
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+= Ionic: From code to android
 
 This page is written to help developers to go from the source code of an ionic application to an android one, with this in mind, topics such as: environment, commands, modifications,...  are covered.
 

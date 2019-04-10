@@ -1,7 +1,21 @@
-=  Angular Progressive Web App
-:toc:
+:toc: macro
 
-= Introduction
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+= Angular Progressive Web App
 
 Progresive web applications (PWAs) are web application that offer better user experience than the traditional ones. In general, they solve problems related with reliability and speed:
 

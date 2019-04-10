@@ -1,3 +1,5 @@
+:toc: macro
+
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -5,13 +7,14 @@ ifdef::env-github[]
 :caution-caption: :fire:
 :warning-caption: :warning:
 endif::[]
-:toc: macro
+
 toc::[]
 :idprefix:
 :idseparator: -
 :reproducible:
 :source-highlighter: rouge
 :listing-caption: Listing
+
 = Internationalization
 
 Nowadays, a common scenario in front-end applications is to have the ability to translate labels and locate numbers, dates, currency and so on when the user clicks over a language selector or similar. devon4ng and specifically Angular has a default mechanism in order to fill the gap of such features, and besides there are some wide used libraries that make even easier to translate applications.
