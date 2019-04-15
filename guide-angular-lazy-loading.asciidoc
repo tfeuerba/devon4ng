@@ -15,3 +15,148 @@ toc::[]
 :source-highlighter: rouge
 :listing-caption: Listing
 
+= Lazy loading
+
+When the development of an application starts, it just contains a small set of features so the app usually loads fast. However, as new features are added, the overall application size grows up  and its loading speed decreases, is in this context where Lazy loading finds its place.
+Lazy loading is a dessign pattern that defers initialization of objects until it is needed so, for example, Users that just access to a website's home page do not need to have other areas loaded.
+Angular handles lazy loading through the routing module which redirect to requested pages. Those pages can be loaded at start or on demand.
+
+= Sample app
+
+To explain how lazy loading is implemented using angular, a basic sample app is going to be developed.
+
+First write in a console `ng new level-app --routing`, to generate a new project called level-app including an app-routing.module.ts file (*--routing* flag).
+
+In the file app.component.html delete all the content except the router-outlet tag.
+
+[source, html]
+----
+<router-outlet></router-outlet>
+----
+
+The next steps consists on creating features modules.
+
+run `ng generate module first --routing`  to generate a module named "first".
+run `ng generate module first/second-left --routing` to generate a module named "second-left" inside "first".
+run `ng generate module first/second-right --routing` to generate a module "second-right" inside "first".
+
+Include a component called content on the generated modules.
+
+run `ng generate component first/first` to generate a component named "first" inside the module "first".
+run `ng generate component first/second-left/content` to generate a component "content" inside the module "second-left".
+run `ng generate component first/second-right/content` to generate a component "content" inside the module "second-right".
+
+To move between components we have to configure the routes used:
+
+In *app-routing.module.ts* add a path 'first' to the component FirstComponent and a redirection from '' to 'first'.
+
+[source, ts]
+----
+...
+import { FirstComponent } from './first/first/first.component';
+
+const routes: Routes = [
+  {
+    path: 'first',
+    component: FirstComponent
+  },
+  {
+    path: '',
+    redirectTo: 'first',
+    pathMatch: 'full',
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
+----
+
+In *app.module.ts* import the module which includes FirstComponent
+
+[source, ts]
+----
+....
+import { FirstModule } from './first/first.module';
+
+@NgModule({
+  ...
+  imports: [
+    ....
+    FirstModule
+  ],
+  ...
+})
+export class AppModule { }
+----
+
+In *first-routing.module.ts* add routes that direct to the content of SecondRightModule and SecondLeftModule. The content of both modules have the same name so, in order to avoid conflicts the name of the components are going to be changed using *as* ( original-name as new-name).
+
+[source, ts]
+----
+...
+import { ContentComponent as ContentLeft} from './second-left/content/content.component';
+import { ContentComponent as ContentRight} from './second-right/content/content.component';
+import { FirstComponent } from './first/first.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: FirstComponent
+  },
+  {
+    path: 'first/second-left',
+    component: ContentLeft
+  },
+  {
+    path: 'first/second-right',
+    component: ContentRight
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class FirstRoutingModule { }
+----
+
+In first.module.ts import SecondLeftModule and SecondRightModule
+
+[source, ts]
+----
+...
+import { SecondLeftModule } from './second-left/second-left.module';
+import { SecondRightModule } from './second-right/second-right.module';
+
+@NgModule({
+  ...
+  imports: [
+    ...
+    SecondLeftModule,
+    SecondRightModule,
+  ]
+})
+export class FirstModule { }
+----
+
+Using the current configuration, we have a project that loads all the modules in a eager way. Run `ng serve` to see what happens.
+
+First, during the compilation we can see that just a main file is built.
+
+image::images/angular/angular-lazy/compile-eager.png["Compile eager", width=800 link="images/angular/angular-lazy/compile-eager.png"]
+
+If we go to http//localhost:4200/first and open developer options (F12 on Chrome), it is found that a document named "first" is loaded.
+
+image::images/angular/angular-lazy/first-lvl-eager.png["First level eager", width=800 link="images/angular/angular-lazy/first-lvl-eager.png"]
+
+If we click on *Go to right module* a second level module opens, but there is no 'second-right' document.
+
+image::images/angular/angular-lazy/second-lvl-right-eager.png["Second level right eager", width=800 link="images/angular/angular-lazy/second-lvl-right-eager.png"]
+
+But, typing the url directly will load 'second-right' but no 'first', even if we click on *Go back*
+
+image::images/angular/angular-lazy/second-lvl-right-eager-d.png["Second level right eager", width=800 link="images/angular/angular-lazy/second-lvl-right-eager-d.png"]
+
