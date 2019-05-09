@@ -1,0 +1,154 @@
+:toc: macro
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+toc::[]
+:idprefix:
+:idseparator: -
+:reproducible:
+:source-highlighter: rouge
+:listing-caption: Listing
+
+= Creating a Simple Store
+In the following pages we use the example of an online streaming service. We will model a particular feature, a watchlist that can be populated by the user with movies she or he wants to see in the future.
+
+== Initializing NgRx
+
+If you're starting fresh, you first have to initialize NgRx and create a root state. The fastest way to do this is using the schematic:
+
+ ng generate @ngrx/schematics:store State --root --module app.module.ts
+ 
+This will automatically generate a root store and register it in the app module. Next we generate a feature module for the watchlist:
+
+ ng generate module watchlist
+ 
+and create a corresponding feature store:
+
+ ng generate store watchlist/Watchlist -m watchlist.module.ts
+ 
+This generates a file `watchlist/reducers/index.ts` with the reducer function, and registers the store in the watchlist module declaration.
+ 
+[WARNING]
+====
+If you're getting an error _Schematic "store" not found in collection "@schematics/angular"_, this means you forgot to register the NgRx schematics as default.
+====
+
+Next, add the WatchlistModule to the AppModule imports so the feature store is registered when the application starts. We also added the *store devtools* which we will use later, resulting in the following file:
+
+*app.module.ts*
+[source, typescript]
+----
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './app.effects';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { WatchlistModule } from './watchlist/watchlist.module';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    WatchlistModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    // Instrumentation must be imported after importing StoreModule (config is optional)
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+----
+
+== Create an entity model and initial state
+We need a simple model for our list of movies. Create a file `watchlist/models/movies.ts` and insert the following code:
+
+[source, typescript]
+----
+export interface Movie {
+    title: string;
+    releaseYear: number;
+    runtimeMinutes: number;
+    genre: Genre;
+}
+
+export type Genre = 'action' | 'fantasy' | 'sci-fi' | 'romantic' | 'comedy' | 'mystery';
+
+export interface WatchlistItem {
+    movie: Movie;
+    added: Date;
+    playbackMinutes: number;
+}
+----
+
+[NOTE]
+====
+We discourage putting several types into the same file and do this only for the sake of keeping this tutorial brief.
+====
+
+Later we will learn how to retrieve data from the backend using effects. For now we will create an initial state for the user with a default movie.
+
+State is defined and transforms by a reducer function. Let's create a watchlist reducer:
+
+ cd watchlist/reducers
+ ng g reducer Watchlist --reducers index.ts
+ 
+Open the generated file `watchlist.reducer.ts`. You see three exports: The *State* interface defines the shape of the state. There is only one instance of a feature state in the store at all times. The *initialState* constant is the state at application creation time. The *reducer* function will later be called by the store to produce the next state instance based on the current state and an action object.
+
+Let's put a movie into the user's watchlist:
+
+*watchlist.reducer.ts*
+
+[source,typescript]
+----
+export interface State {
+  items: WatchlistItem[];
+}
+
+export const initialState: State = {
+  items: [
+    {
+      movie: {
+        title: 'Die Hard',
+        genre: 'action',
+        releaseYear: 1988,
+        runtimeMinutes: 132
+      },
+      playbackMinutes: 0,
+      added: new Date(),
+    }
+  ]
+};
+----
+
+== Select the current watchlist
+
+State slices can be retrieved from the store using selectors.
+
+Create a watchlist component:
+
+ ng g c watchlist/Watchlist
+ 
+and add it to the exports of WatchlistModule. Also, replace `app.component.html` with
+
+ <app-watchlist></app-watchlist>
+ 
+== 
+ 
