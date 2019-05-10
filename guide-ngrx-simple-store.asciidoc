@@ -231,6 +231,7 @@ export class WatchlistComponent {
 *watchlist.component.html*
 [source,typescript]
 ----
+<h1>Watchlist</h1>
 <ul>
     <li *ngFor="let item of watchlistItems$ | async">{{item.movie.title}} ({{item.movie.releaseYear}}): {{item.playbackMinutes}}/{{item.movie.runtimeMinutes}} min watched</li>
 </ul>
